@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✝️</text></svg>" />
+  <title>A Personal Reflection of the Beatitudes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f9f5ee;
+      --parchment: #ede8dc;
+      --warm-border: #d8ceb8;
+      --text-dark: #2a2118;
+      --text-mid: #5c4f3a;
+      --text-light: #9c8e78;
+      --gold: #b8913a;
+      --gold-light: #e8d5a3;
+      --accent: #6b4c2a;
+      --card-bg: #fdfaf4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text-dark);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--warm-border);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(184,145,58,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(107,76,42,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-ornament {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--text-dark);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+      opacity: 0.6;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--text-mid);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.1rem 2rem;
+      background: var(--text-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: #fff; }
+
+    /* ── WRAPPER ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--text-mid);
+      max-width: 620px;
+      margin: 0 auto;
+      font-style: italic;
+      line-height: 1.85;
+    }
+
+    .intro-placeholder {
+      background: var(--parchment);
+      border: 1px dashed var(--warm-border);
+      border-radius: 6px;
+      padding: 1.25rem 1.75rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--text-light);
+      max-width: 620px;
+      margin: 0 auto;
+      font-style: italic;
+      line-height: 1.85;
+      text-align: left;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text-dark);
+    }
+
+    .ornamental-line {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .ornamental-line::before,
+    .ornamental-line::after {
+      content: '';
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--warm-border);
+    }
+
+    .ornamental-line span {
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    /* ── BEATITUDE CARDS ── */
+    .beat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--warm-border);
+      border-radius: 8px;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+      page-break-inside: avoid;
+    }
+
+    .beat-card-header {
+      background: var(--text-dark);
+      color: var(--gold-light);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .beat-number-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.7;
+      flex-shrink: 0;
+      margin-top: -4px;
+    }
+
+    .beat-card-header-text {}
+
+    .beat-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 0.4rem;
+    }
+
+    .beat-card-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .beat-verse-ref {
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+    }
+
+    .beat-card-body {
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 620px) {
+      .beat-card-body { grid-template-columns: 1fr; }
+      .beat-image-block { grid-column: 1; }
+    }
+
+    .beat-image-block {
+      grid-column: 1 / -1;
+    }
+
+    .subsection-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--warm-border);
+    }
+
+    .placeholder-block {
+ 	background: var(--parchment);
+	border: 1px dashed var(--warm-border);
+  	border-radius: 5px;
+ 	padding: 0.85rem 1rem;
+  	font-family: 'Cormorant Garamond', serif;
+  	font-style: italic;
+  	font-size: 1rem;
+  	color: var(--text-dark);
+  	line-height: 1.75;
+  	min-height: 90px;
+     }
+
+    .image-placeholder-block {
+      border: 1px dashed var(--warm-border);
+      border-radius: 5px;
+      background: var(--parchment);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .image-placeholder-block svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--warm-border);
+    }
+
+    /* ── CLOSING ── */
+    .closing {
+      background: var(--parchment);
+      border-top: 1px solid var(--warm-border);
+      border-bottom: 1px solid var(--warm-border);
+      padding: 3.5rem 2rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .closing h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .closing .placeholder-block {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-ornament">A Personal Reflection of the Beatitudes</div>
+    <h1>Steven Song</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">"Blessed are the poor in spirit, for theirs is the kingdom of heaven." — Matthew 5:3</p>
+  </header>
+
+  <!-- STICKY NAV -->
+  <nav>
+    <a href="#beatitude-1">Beatitude 1</a>
+    <a href="#beatitude-2">Beatitude 2</a>
+    <a href="#beatitude-3">Beatitude 3</a>
+    <a href="#beatitude-4">Beatitude 4</a>
+    <a href="#closing">Closing</a>
+  </nav>
+
+
+  <!-- BEATITUDES SECTION HEADER -->
+  <div class="container">
+    <div class="section-header">
+      <h2>Four Beatitudes</h2>
+      <div class="ornamental-line"><span>✦</span></div>
+    </div>
+  </div>
+
+  <!-- BEATITUDE 1 -->
+  <div class="container">
+    <article id="beatitude-1" class="beat-card fade-in">
+      <div class="beat-card-header">
+        <div class="beat-number-badge">I</div>
+        <div class="beat-card-header-text">
+          <div class="beat-tag">Beatitude One</div>
+          <h3>"Blessed are those who hunger and thirst for righteousness, for they shall be satisfied."</h3>
+          <div class="beat-verse-ref">Matthew 5:6</div>
+        </div>
+      </div>
+      <div class="beat-card-body">
+        <div>
+          <div class="subsection-title">Role in my life</div>
+          <div class="placeholder-block">
+            A great example of how this beatitude plays out in my life is in school. In school I often have to deal with unfair situations such as marks that were unfairly given or other activities with my friends that are unjust to one of us. In those scenarios, I have to find a way to either negotiate a fairer result or do what is fair and right for other students. In a biblical context, this beatitude means that people who focus on doing what is right no matter what consequences it may lead to will have a place in heaven after they pass. This beatitude is a great example of why justice is important in our day-to-day lives.
+          </div>
+        </div>
+        <div>
+          <div class="subsection-title">In my family</div>
+          <div class="placeholder-block">
+            This beatitude plays an important role in my family by encouraging me to stand up for what is fair and preventing my parents from making unjust decisions for me. Even though I know it is important to listen to my parents, sometimes the rules that they implement are incredibly unfair or unjust. An example of this is when they try to implement a new house rule that is outdated for my age or unfair. Working to find a fair solution is one of the many ways that righteousness occurs in our house. In my family, we try to keep all the rules fair, and we hold each other accountable for what we do to ensure nothing unjust happens. 
+          </div>
+        </div>
+        <div class="beat-image-block">
+          <div class="subsection-title">Image or illustration</div>
+          <div class="image-placeholder-block">
+            <img src="1.jpg" alt="Women holding a perfectly balanced scale" style="width:100%; border-radius:5px;" />
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+<!-- BEATITUDE 2 -->
+  <div class="container">
+    <article id="beatitude-2" class="beat-card fade-in">
+      <div class="beat-card-header">
+        <div class="beat-number-badge">II</div>
+        <div class="beat-card-header-text">
+          <div class="beat-tag">Beatitude Two</div>
+          <h3>"Blessed are the merciful, for they shall receive mercy."</h3>
+          <div class="beat-verse-ref">Matthew 5:7</div>
+        </div>
+      </div>
+      <div class="beat-card-body">
+        <div>
+          <div class="subsection-title">Role in my life</div>
+          <div class="placeholder-block">
+            In my life, mercy has also become something where I forgive people when they have done something wrong to me. This looks like me forgiving someone even after they purposely tried to take stuff from me or annoy me. It allows me to move past issues without lashing out or escalating the situation as well. This beatitude has a general meaning: individuals who focus on forgiveness and kindness, even when unearned, will receive the same mercy and forgiveness from God. It encourages me to look past grudges and to forgive everyone regardless of what has happened.
+          </div>
+        </div>
+        <div>
+          <div class="subsection-title">In my family</div>
+          <div class="placeholder-block">
+            Mercy is what has allowed my family to forgive each other after conflicts or disagreements. The ability to forgive is the greatest form of mercy in my family. In my family, being merciful looks like me and my parents being able to forgive each other after fights and choosing to let go of any grudges that may have come with the fight. Another way I demonstrate this is by forgiving my brother after he annoys me or we have a disagreement. For example, if my brother accidentally broke something that is mine, I would show mercy by accepting his apology and moving on, instead of holding a grudge and escalating the situation. This creates a home where people aren’t worried about escalation or punishment for small mistakes.
+          </div>
+        </div>
+        <div class="beat-image-block">
+          <div class="subsection-title">Image or illustration</div>
+          <div class="image-placeholder-block">
+            <img src="forgiveness.jpg" alt="A cross that is disintigrating and forgiveness" style="width:100%; border-radius:5px;" />
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- BEATITUDE 3 -->
+  <div class="container">
+    <article id="beatitude-3" class="beat-card fade-in">
+      <div class="beat-card-header">
+        <div class="beat-number-badge">III</div>
+        <div class="beat-card-header-text">
+          <div class="beat-tag">Beatitude Three</div>
+          <h3>"Blessed are the pure in heart, for they shall see God."</h3>
+          <div class="beat-verse-ref">Matthew 5:8</div>
+        </div>
+      </div>
+      <div class="beat-card-body">
+        <div>
+          <div class="subsection-title">Role in my life</div>
+          <div class="placeholder-block">
+            In my life, being pure in heart means focusing on acting with genuine kind intentions and focusing on telling the truth and hiding nothing when asked. I try to focus on avoiding sinning in my day-to-day life and instead help others when they need it. God tells us that when we have a pure heart, we will be able to see him spiritually and be in his presence. This beatitude encourages all of us to stay pure and focus on the greater good.
+          </div>
+        </div>
+        <div>
+          <div class="subsection-title">In my family</div>
+          <div class="placeholder-block">
+            This beatitude is all about integrity and kindness, which are shown a lot in my family. My family demonstrates this through our continuous focus on telling the truth, being kind to one another, and listening to God's commandments. For example, if I or my brother did something wrong, we would tell our parents the full truth instead of lying and trying to avoid punishment. Another great example is helping around the house with chores or helping my family when they need it. I try to do my best in the house by keeping out of trouble and ensuring that at the end of the day, I have stayed pure and helped everyone in some way.
+          </div>
+        </div>
+        <div class="beat-image-block">
+          <div class="subsection-title">Image or illustration</div>
+          <div class="image-placeholder-block">
+            <img src="3.jpg" alt="Beautiful pure scenery, really pretty" style="width:100%; border-radius:5px;" />
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- BEATITUDE 4 -->
+  <div class="container">
+    <article id="beatitude-4" class="beat-card fade-in">
+      <div class="beat-card-header">
+        <div class="beat-number-badge">IV</div>
+        <div class="beat-card-header-text">
+          <div class="beat-tag">Beatitude Four</div>
+          <h3>"Blessed are the peacemakers, for they shall be called children of God."</h3>
+          <div class="beat-verse-ref">Matthew 5:9</div>
+        </div>
+      </div>
+      <div class="beat-card-body">
+        <div>
+          <div class="subsection-title">Role in my life</div>
+          <div class="placeholder-block">
+            In my life, focusing on peace has also allowed me to de-escalate many situations that could have ended up with physical fights. Trying to find a solution, a compromise, or any way to de-escalate has saved me a lot of trouble and is an extremely important aspect of my life now. Peace has become one of my larger mottos, and I feel like this beatitude is able to represent this really well. The beatitude also shows us that God is a peacemaker and that those who also try to make peace are considered his followers/children, which I feel is a really good standard for me to set. 
+          </div>
+        </div>
+        <div>
+          <div class="subsection-title">In my family</div>
+          <div class="placeholder-block">
+            In my family, being a peacemaker means that I have to prevent fights at home, even if I feel like I'm right. With my parents, this looks like avoiding using a sharp or disrespectful tone when answering them and trying to listen to them the best I can when they tell me to do something. When I do get annoyed or they tell me something unreasonable, I try to respond respectfully instead of lashing out, which prevents the situation from escalating and getting worse. With my brother, I try to avoid arguing and fighting with him overall. This looks like trying to avoid doing stuff that might annoy him or trying to find a compromise instead of a fight. For example, instead of fighting over whose turn it is on a game, I would try to make a deal with him where we would both be able to play the game we wanted to play. 
+          </div>
+        </div>
+        <div class="beat-image-block">
+          <div class="subsection-title">Image or illustration</div>
+          <div class="image-placeholder-block">
+            <img src="4.webp" alt="Two people shaking hands" style="width:100%; border-radius:5px;" />
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+<!-- CLOSING -->
+  <section id="closing" class="closing">
+    <h2>Closing Reflection</h2>
+    <div class="ornamental-line" style="justify-content:center; margin-bottom:1.5rem;"><span>✦</span></div>
+    <div class="placeholder-block" style="text-align:center; min-height:unset; padding: 0.6rem 1rem;">
+      "Blessed are the meek, for they shall inherit the earth" - Matthew 5:5
+    </div>
+  </section>
+
+  <footer>
+    Steven Song &mdash; May 14, 2026
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
